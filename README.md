@@ -4,8 +4,8 @@ Cyberpatriot Script for linux
 
 To run go to terminal and put this in: git clone https://github.com/mikudayo3939/cyberpatriot-script-yay
 
-Then type: cd cyberpatriot-linux-script-yay
+Then type: cd cyberpatriot-script-yay
 
 Then: chmod +x start.sh
 
-Run it: sudo ./start.sh# cyberpatriot-script-yay
+Run it: sudo ./start.sh
