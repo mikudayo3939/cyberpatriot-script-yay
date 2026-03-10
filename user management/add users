@@ -1,0 +1,29 @@
+echo Type user account names of users you want to add, with a space in between
+read -a usersNew
+
+usersNewLength=${#usersNew[@]}	
+
+for (( i=0;i<$usersNewLength;i++))
+do
+	clear
+	echo ${usersNew[${i}]}
+	adduser ${usersNew[${i}]}
+	printTime "A user account for ${usersNew[${i}]} has been created."
+	clear
+	echo Make ${usersNew[${i}]} administrator? yes or no
+	read ynNew								
+	if [ $ynNew == yes ]
+	then
+		gpasswd -a ${usersNew[${i}]} sudo
+		gpasswd -a ${usersNew[${i}]} adm
+		gpasswd -a ${usersNew[${i}]} lpadmin
+		gpasswd -a ${usersNew[${i}]} sambashare
+		printTime "${usersNew[${i}]} has been made an administrator."
+	else
+		printTime "${usersNew[${i}]} has been made a standard user."
+	fi
+	
+	passwd -x30 -n3 -w7 ${usersNew[${i}]}
+	usermod -L ${usersNew[${i}]}
+	printTime "${usersNew[${i}]}'s password has been given a maximum age of 30 days, minimum of 3 days, and warning of 7 days. ${users[${i}]}'s account has been locked."
+done

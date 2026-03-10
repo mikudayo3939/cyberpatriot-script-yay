@@ -1,0 +1,4 @@
+#turns on firewall
+clear
+apt-get install ufw -y -qq
+ufw enable
